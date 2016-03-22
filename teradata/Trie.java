@@ -1,6 +1,5 @@
 package teradata;
 
-import java.util.Arrays;
 import java.util.Map.Entry;
 
 // This class represents an implementation of the dictionary
@@ -71,7 +70,8 @@ public class Trie implements Dictionary {
 			if (cur.getChildren().get(c) == null) {
 				return null;
 				// Can also throw error message saying "No such word exists".
-				// I have not used it since the message being a string, can be confused
+				// I have not used it since the message being a string, can be
+				// confused
 				// with a definition to the uninitiated or to bots.
 			}
 			cur = cur.getChildren().get(c);
@@ -101,7 +101,8 @@ public class Trie implements Dictionary {
 	public void delete(String word) {
 
 		// I am initially going for a simple implementation where I just set the
-		// 'meaning' variable of the last trieNode(represents last character) of word to null
+		// 'meaning' variable of the last trieNode(represents last character) of
+		// word to null
 		// This will clear the definition if already present.
 		// Advantages: Simple to implement
 		// Disadvantages: This will lead to some dead nodes which could have
@@ -121,18 +122,5 @@ public class Trie implements Dictionary {
 			cur = cur.getChildren().get(c);
 		}
 		cur.setMeaning(null);
-	}
-
-	/*
-	 * Some test code
-	 */
-	public static void main(String[] args) {
-		Trie trie = new Trie();
-		trie.insert("abc", "mean1");
-		trie.insert("abdd", "mean2");
-
-		String[] sl = trie.getWordsWithPrefix("abd");
-		System.out.println(Arrays.toString(sl));
-		System.out.println(trie.getDefinition("abdd"));
 	}
 }
